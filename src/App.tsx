@@ -1,18 +1,25 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
-import Footer from './component/Footer/Footer';
+import styled from 'styled-components';
 import Login from './component/Login/Login';
-import Header from './component/Header/Header';
+import { FireBaseAuthServiceImpl } from 'service/firebase_auth_service';
+
+const fireBaseAuthService = new FireBaseAuthServiceImpl();
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Login />
-      <Footer />
-    </div>
+    <>
+      <AppContainer>
+        <Login fireBaseAuthService={fireBaseAuthService} />
+      </AppContainer>
+    </>
   );
 }
 
+const AppContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: gray;
+`;
 export default App;
