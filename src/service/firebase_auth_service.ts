@@ -4,7 +4,9 @@ import {
   AuthProvider,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithPopup,
+  User,
   UserCredential,
 } from 'firebase/auth';
 import { firebaseApp } from 'service/firebase';
@@ -31,5 +33,11 @@ export class FireBaseAuthServiceImpl implements FireBaseAuthService {
       default:
         throw new Error('provider error');
     }
+  }
+
+  onAuthChange(onUserChanged: Function): void {
+    onAuthStateChanged(this.auth, (user: User | null) => {
+      onUserChanged(user);
+    });
   }
 }

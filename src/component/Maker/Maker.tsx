@@ -2,11 +2,14 @@ import Footer from 'component/Footer/Footer';
 import Header from 'component/Header/Header';
 import React from 'react';
 import { FC } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface makerProps {}
 
 const Maker: FC<makerProps> = () => {
+  const location = useLocation();
+
   return (
     <Container>
       <Header />
