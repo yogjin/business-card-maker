@@ -1,18 +1,36 @@
+import { FireBaseAuthService } from 'common/interfaces';
 import Footer from 'component/Footer/Footer';
 import Header from 'component/Header/Header';
-import React from 'react';
+import { User } from 'firebase/auth';
+import React, { useEffect } from 'react';
 import { FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-interface makerProps {}
+interface makerProps {
+  fireBaseAuthService: FireBaseAuthService;
+}
 
-const Maker: FC<makerProps> = () => {
+const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
+  const handleLogout = (): void => {
+    fireBaseAuthService.logout();
+  };
+
+  const goToLogin = (): void => {
+    navigate('/');
+  };
+
+  useEffect(() => {
+    fireBaseAuthService.onAuthChange((user: User | null) => {
+      !user && goToLogin();
+    });
+  });
   return (
     <Container>
-      <Header />
+      <Header handleLogout={handleLogout} />
       <div>로그인</div>
       <Footer />
     </Container>

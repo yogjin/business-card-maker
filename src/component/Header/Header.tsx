@@ -2,14 +2,18 @@ import React from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 import logo from 'images/logo.png';
+import { FireBaseAuthService } from 'common/interfaces';
 
-interface HeaderProps {}
+interface HeaderProps {
+  handleLogout?: () => void;
+}
 
-const Header: FC<HeaderProps> = () => {
+const Header: FC<HeaderProps> = ({ handleLogout }) => {
   return (
     <Container>
       <img src={logo} alt="logo" style={{ width: '4rem' }}></img>
       <Title>Business Card Maker</Title>
+      {handleLogout && <button onClick={handleLogout}>로그아웃</button>}
     </Container>
   );
 };

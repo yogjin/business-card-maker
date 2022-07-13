@@ -18,7 +18,10 @@ function App() {
               path="/"
               element={<Login fireBaseAuthService={fireBaseAuthService} />}
             />
-            <Route path="/maker" element={<Maker />} />
+            <Route
+              path="/maker"
+              element={<Maker fireBaseAuthService={fireBaseAuthService} />}
+            />
           </Routes>
         </BrowserRouter>
       </AppContainer>

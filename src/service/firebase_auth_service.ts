@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
+  signOut,
   User,
   UserCredential,
 } from 'firebase/auth';
@@ -23,7 +24,9 @@ export class FireBaseAuthServiceImpl implements FireBaseAuthService {
     return signInWithPopup(this.auth, provider);
   }
 
-  logout(): void {}
+  logout(): void {
+    signOut(this.auth);
+  }
 
   private getProvider(providerName: string): AuthProvider {
     switch (providerName) {
