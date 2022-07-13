@@ -1,8 +1,10 @@
 import { FireBaseAuthService } from 'common/interfaces';
 import Footer from 'component/Footer/Footer';
 import Header from 'component/Header/Header';
-import React from 'react';
+import { User } from 'firebase/auth';
+import React, { useEffect } from 'react';
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -11,11 +13,26 @@ interface LoginProps {
 }
 
 const Login: FC<LoginProps> = ({ fireBaseAuthService }) => {
-  const onClickLoginButton = (providerName: string) => {
-    fireBaseAuthService.login(providerName).then(console.log);
+  let navigate = useNavigate();
+
+  const goToMaker = (userId: string) => {
+    navigate('/maker', { state: { id: userId } });
   };
+
+  const onClickLoginButton = (providerName: string) => {
+    fireBaseAuthService.login(providerName).then((result) => {
+      goToMaker(result.user.uid);
+    });
+  };
+
+  useEffect(() => {
+    fireBaseAuthService.onAuthChange((user: User | null) => {
+      user && goToMaker(user.uid);
+    });
+  });
   return (
     <>
+      ''
       <Box>
         <Header />
         <LoginContainer>

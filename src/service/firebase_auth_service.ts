@@ -4,7 +4,10 @@ import {
   AuthProvider,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithPopup,
+  signOut,
+  User,
   UserCredential,
 } from 'firebase/auth';
 import { firebaseApp } from 'service/firebase';
@@ -21,7 +24,9 @@ export class FireBaseAuthServiceImpl implements FireBaseAuthService {
     return signInWithPopup(this.auth, provider);
   }
 
-  logout(): void {}
+  logout(): void {
+    signOut(this.auth);
+  }
 
   private getProvider(providerName: string): AuthProvider {
     switch (providerName) {
@@ -31,5 +36,11 @@ export class FireBaseAuthServiceImpl implements FireBaseAuthService {
       default:
         throw new Error('provider error');
     }
+  }
+
+  onAuthChange(onUserChanged: Function): void {
+    onAuthStateChanged(this.auth, (user: User | null) => {
+      onUserChanged(user);
+    });
   }
 }

@@ -5,4 +5,5 @@ import { UserCredential } from 'firebase/auth';
 export interface FireBaseAuthService {
   login: (providerName: string) => Promise<UserCredential>;
   logout(): void;
+  onAuthChange: (onUserChanged: Function) => void;
 }
