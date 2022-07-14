@@ -1,10 +1,10 @@
-import { FireBaseAuthService } from 'common/interfaces';
+import { Card, FireBaseAuthService } from 'common/interfaces';
 import Editor from 'component/Editor/Editor';
 import Footer from 'component/Footer/Footer';
 import Header from 'component/Header/Header';
 import Preview from 'component/Preview/Preview';
 import { User } from 'firebase/auth';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -14,6 +14,24 @@ interface makerProps {
 }
 
 const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
+  const [cards, setCards] = useState<Card[]>([
+    {
+      name: 'Bob',
+      company: 'Kakao',
+      theme: 'light',
+      title: 'Frontend Developer',
+      email: 'asb@s.com',
+      message: 'hello',
+    },
+    {
+      name: 'Chris',
+      company: 'Kakao',
+      theme: 'dark',
+      title: 'Backend Developer',
+      email: 'asb@s.com',
+      message: 'hihihihihihi',
+    },
+  ]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -35,7 +53,7 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
       <Header handleLogout={handleLogout} />
       <Main>
         <Editor />
-        <Preview />
+        <Preview cards={cards} />
       </Main>
       <Footer />
     </Container>

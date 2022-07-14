@@ -1,13 +1,20 @@
+import { Card } from 'common/interfaces';
+import CardComponent from 'component/Card/CardComponent';
 import React from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-interface PreviewProps {}
+interface PreviewProps {
+  cards: Card[];
+}
 
-const Preview: FC<PreviewProps> = () => {
+const Preview: FC<PreviewProps> = ({ cards }) => {
   return (
     <Container>
       <Title>Card Preview</Title>
+      {cards.map((card) => (
+        <CardComponent card={card} />
+      ))}
     </Container>
   );
 };
