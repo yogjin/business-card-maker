@@ -33,8 +33,10 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
   return (
     <Container>
       <Header handleLogout={handleLogout} />
-      <Editor />
-      <Preview />
+      <Main>
+        <Editor />
+        <Preview />
+      </Main>
       <Footer />
     </Container>
   );
@@ -44,16 +46,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  & > :nth-child(1) {
-    flex: 1 1 15%;
-  }
-  & > :nth-child(2) {
-    flex: 1 1 75%;
-  }
-  & > :nth-child(3) {
-    flex: 1 1 10%;
-  }
 `;
 
+const Main = styled.div`
+  flex: 1;
+`;
 export default Maker;
