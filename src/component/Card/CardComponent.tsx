@@ -25,7 +25,6 @@ const CardComponent: FC<CardProps> = ({ card }) => {
       <MetaData theme={theme}>
         <Data name>{name}</Data>
         <Data>{company}</Data>
-        <Divider />
         <Data>{title}</Data>
         <Data>{email}</Data>
         <Data>{message}</Data>
@@ -63,15 +62,16 @@ const MetaData = styled.div<MetaDataProps>`
   flex-basis: 85%;
   flex-direction: column;
   color: ${({ theme }) => (theme === 'dark' ? 'white' : 'black')};
+  &:nth-child(2)::after {
+    content: '';
+    display: block;
+    width: 90%;
+    height: 1px;
+    background-color: red;
+  }
 `;
 const Data = styled.span<DataProps>`
   font-size: ${(props) => (props.name ? '1.5rem' : '1rem')};
   text-align: left;
-`;
-const Divider = styled.div`
-  width: 95%;
-  height: 1px;
-  background-color: gray;
-  margin: 0.3rem 0;
 `;
 export default CardComponent;
