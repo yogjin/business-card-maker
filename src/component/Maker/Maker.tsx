@@ -1,6 +1,8 @@
 import { FireBaseAuthService } from 'common/interfaces';
+import Editor from 'component/Editor/Editor';
 import Footer from 'component/Footer/Footer';
 import Header from 'component/Header/Header';
+import Preview from 'component/Preview/Preview';
 import { User } from 'firebase/auth';
 import React, { useEffect } from 'react';
 import { FC } from 'react';
@@ -31,7 +33,8 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
   return (
     <Container>
       <Header handleLogout={handleLogout} />
-      <div>로그인</div>
+      <Editor />
+      <Preview />
       <Footer />
     </Container>
   );
