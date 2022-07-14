@@ -33,7 +33,7 @@ const CardComponent: FC<CardProps> = ({ card }) => {
     </Container>
   );
 };
-const Container = styled.div<ContainerProps>`
+const Container = styled.li<ContainerProps>`
   display: flex;
   border: 1px solid black;
   border-radius: 1rem;

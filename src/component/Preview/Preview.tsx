@@ -12,22 +12,27 @@ const Preview: FC<PreviewProps> = ({ cards }) => {
   return (
     <Container>
       <Title>Card Preview</Title>
-      {cards.map((card) => (
-        <CardComponent card={card} />
-      ))}
+      <List>
+        {cards.map((card) => (
+          <CardComponent card={card} />
+        ))}
+      </List>
     </Container>
   );
 };
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
   background-color: wheat;
   flex-basis: 50%;
 `;
-
+const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 0;
+  width: 100%;
+`;
 const Title = styled.h1`
   font-size: 1.5rem;
 `;
