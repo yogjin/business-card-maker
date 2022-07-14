@@ -11,6 +11,9 @@ interface CardProps {
 interface ContainerProps {
   theme: Card['theme'];
 }
+interface MetaDataProps {
+  theme: Card['theme'];
+}
 interface DataProps {
   name?: boolean;
 }
@@ -19,7 +22,7 @@ const CardComponent: FC<CardProps> = ({ card }) => {
   return (
     <Container theme={theme}>
       <Image src={tempProfileImage}></Image>
-      <MetaData>
+      <MetaData theme={theme}>
         <Data name>{name}</Data>
         <Data>{company}</Data>
         <Divider />
@@ -53,10 +56,11 @@ const Image = styled.img`
   padding-right: 1em;
   border-radius: 100%;
 `;
-const MetaData = styled.div`
+const MetaData = styled.div<MetaDataProps>`
   display: flex;
   flex-basis: 85%;
   flex-direction: column;
+  color: ${({ theme }) => (theme === 'dark' ? 'white' : 'black')};
 `;
 const Data = styled.span<DataProps>`
   font-size: ${(props) => (props.name ? '1.5rem' : '1rem')};
