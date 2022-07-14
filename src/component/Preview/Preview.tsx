@@ -20,6 +20,9 @@ const Preview: FC<PreviewProps> = ({ cards }) => {
 };
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   background-color: wheat;
   flex-basis: 50%;

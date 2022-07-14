@@ -37,7 +37,7 @@ const Container = styled.div<ContainerProps>`
   display: flex;
   border: 1px solid black;
   border-radius: 1rem;
-  margin: 1em 3em;
+  margin: 0.5em 3em;
   padding: 1em;
   background: ${(props) => {
     switch (props.theme) {
@@ -49,6 +49,8 @@ const Container = styled.div<ContainerProps>`
         return 'linear-gradient(45deg, Violet, Orange)';
     }
   }};
+  width: 100%;
+  max-width: 35rem;
 `;
 const Image = styled.img`
   flex-basis: 15%;
