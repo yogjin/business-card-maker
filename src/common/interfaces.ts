@@ -7,3 +7,14 @@ export interface FireBaseAuthService {
   logout(): void;
   onAuthChange: (onUserChanged: Function) => void;
 }
+
+// Card
+export interface Card {
+  name: string;
+  company: string;
+  theme: 'light' | 'dark' | 'colorful';
+  title: string;
+  email: string;
+  message: string;
+  // picture
+}

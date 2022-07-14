@@ -1,8 +1,10 @@
-import { FireBaseAuthService } from 'common/interfaces';
+import { Card, FireBaseAuthService } from 'common/interfaces';
+import Editor from 'component/Editor/Editor';
 import Footer from 'component/Footer/Footer';
 import Header from 'component/Header/Header';
+import Preview from 'component/Preview/Preview';
 import { User } from 'firebase/auth';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -12,6 +14,24 @@ interface makerProps {
 }
 
 const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
+  const [cards, setCards] = useState<Card[]>([
+    {
+      name: 'Bob',
+      company: 'Kakao',
+      theme: 'light',
+      title: 'Frontend Developer',
+      email: 'asb@s.com',
+      message: 'hello',
+    },
+    {
+      name: 'Chris',
+      company: 'Kakao',
+      theme: 'dark',
+      title: 'Backend Developer',
+      email: 'asb@s.com',
+      message: 'hihihihihihi',
+    },
+  ]);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,7 +51,10 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
   return (
     <Container>
       <Header handleLogout={handleLogout} />
-      <div>로그인</div>
+      <Main>
+        <Editor />
+        <Preview cards={cards} />
+      </Main>
       <Footer />
     </Container>
   );
@@ -41,16 +64,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  & > :nth-child(1) {
-    flex: 1 1 15%;
-  }
-  & > :nth-child(2) {
-    flex: 1 1 75%;
-  }
-  & > :nth-child(3) {
-    flex: 1 1 10%;
-  }
 `;
 
+const Main = styled.div`
+  flex: 1;
+  display: flex;
+  @media screen and (max-width: 42rem) {
+    flex-direction: column;
+  }
+`;
 export default Maker;
