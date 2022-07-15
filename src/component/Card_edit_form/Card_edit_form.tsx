@@ -12,7 +12,7 @@ interface Card_edit_formProps {
 function handleDeleteButton() {}
 
 const Card_edit_form: FC<Card_edit_formProps> = ({ card }) => {
-  const { name, company, theme, title, email, message } = card;
+  const { id, name, company, theme, title, email, message } = card;
   return (
     <Form>
       <Input type="text" name="name" value={name} />
