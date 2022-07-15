@@ -16,6 +16,7 @@ const Container = styled.div`
   text-align: center;
   background-color: pink;
   flex-basis: 50%;
+  border-right: 1px solid gray;
 `;
 
 const Title = styled.h1`
