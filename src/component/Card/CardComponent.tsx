@@ -62,6 +62,10 @@ const MetaData = styled.div<MetaDataProps>`
   flex-basis: 85%;
   flex-direction: column;
   color: ${({ theme }) => (theme === 'dark' ? 'white' : 'black')};
+`;
+const Data = styled.span<DataProps>`
+  font-size: ${(props) => (props.name ? '1.5rem' : '1rem')};
+  text-align: left;
   &:nth-child(2)::after {
     content: '';
     display: block;
@@ -69,9 +73,5 @@ const MetaData = styled.div<MetaDataProps>`
     height: 1px;
     background-color: red;
   }
-`;
-const Data = styled.span<DataProps>`
-  font-size: ${(props) => (props.name ? '1.5rem' : '1rem')};
-  text-align: left;
 `;
 export default CardComponent;
