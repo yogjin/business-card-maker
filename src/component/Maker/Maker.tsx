@@ -52,7 +52,7 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
     <Container>
       <Header handleLogout={handleLogout} />
       <Main>
-        <Editor />
+        <Editor cards={cards} />
         <Preview cards={cards} />
       </Main>
       <Footer />

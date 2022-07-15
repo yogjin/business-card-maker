@@ -1,13 +1,20 @@
+import { Card } from 'common/interfaces';
+import Card_edit_form from 'component/Card_edit_form/Card_edit_form';
 import React from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 
-interface EditorProps {}
+interface EditorProps {
+  cards: Card[];
+}
 
-const Editor: FC<EditorProps> = () => {
+const Editor: FC<EditorProps> = ({ cards }) => {
   return (
     <Container>
       <Title>Card Maker</Title>
+      {cards.map((card) => (
+        <Card_edit_form card={card} />
+      ))}
     </Container>
   );
 };
