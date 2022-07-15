@@ -1,6 +1,7 @@
 import { Card } from 'common/interfaces';
 import React from 'react';
 import { FC } from 'react';
+import styled from 'styled-components';
 
 interface Card_edit_formProps {
   card: Card;
@@ -9,19 +10,38 @@ interface Card_edit_formProps {
 const Card_edit_form: FC<Card_edit_formProps> = ({ card }) => {
   const { name, company, theme, title, email, message } = card;
   return (
-    <form>
-      <input type="text" name="name" value={name} />
-      <input type="text" name="company" value={company} />
+    <Form>
+      <Input type="text" name="name" value={name} />
+      <Input type="text" name="company" value={company} />
       <select name="theme">
         <option value={theme}>light</option>
         <option value={theme}>dark</option>
         <option value={theme}>colorful</option>
       </select>
-      <input type="text" name="title" value={title} />
-      <input type="text" name="email" value={email} />
-      <textarea name="message" value={message}></textarea>
-    </form>
+      <Input type="text" name="title" value={title} />
+      <Input type="text" name="email" value={email} />
+      <Textarea name="message" value={message}></Textarea>
+    </Form>
   );
 };
 
+const Form = styled.form`
+  display: flex;
+  flex-wrap: wrap;
+
+  margin: 0.5em 3em;
+  padding: 1em;
+`;
+
+const Input = styled.input`
+  flex: 1 1 30%;
+  font-size: 1rem;
+  padding: 0.2em;
+`;
+
+const Textarea = styled.textarea`
+  flex-basis: 100%;
+  font-size: 1rem;
+  padding: 0.2em;
+`;
 export default Card_edit_form;
