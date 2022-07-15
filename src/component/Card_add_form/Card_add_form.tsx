@@ -10,6 +10,7 @@ interface Card_add_formProps {
 }
 
 const Card_add_form: FC<Card_add_formProps> = ({ addCard }) => {
+  const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const companyRef = useRef<HTMLInputElement>(null);
   const themeRef = useRef<HTMLSelectElement>(null);
@@ -28,12 +29,12 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard }) => {
       email: emailRef.current?.value || '',
       message: messageRef.current?.value || '',
     };
-
+    formRef.current?.reset();
     addCard(newCard);
   };
 
   return (
-    <Form>
+    <Form ref={formRef}>
       <Input type="text" name="name" placeholder="name" ref={nameRef} />
       <Input
         type="text"
