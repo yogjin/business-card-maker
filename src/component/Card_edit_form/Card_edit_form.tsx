@@ -1,4 +1,5 @@
 import { Card } from 'common/interfaces';
+import ImageFileInputButton from 'component/ImageFileInputButton/ImageFileInputButton';
 import React from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
@@ -21,6 +22,7 @@ const Card_edit_form: FC<Card_edit_formProps> = ({ card }) => {
       <Input type="text" name="title" value={title} />
       <Input type="text" name="email" value={email} />
       <Textarea name="message" value={message}></Textarea>
+      <ImageFileInputButton />
     </Form>
   );
 };
@@ -28,7 +30,6 @@ const Card_edit_form: FC<Card_edit_formProps> = ({ card }) => {
 const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
-
   margin: 0.5em 3em;
   padding: 1em;
 `;
