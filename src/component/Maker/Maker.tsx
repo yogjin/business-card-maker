@@ -50,11 +50,16 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
       !user && goToLogin();
     });
   });
+
+  const addCard = (newCard: Card) => {
+    setCards((cards) => [...cards, newCard]);
+  };
+
   return (
     <Container>
       <Header handleLogout={handleLogout} />
       <Main>
-        <Editor cards={cards} />
+        <Editor cards={cards} addCard={addCard} />
         <Preview cards={cards} />
       </Main>
       <Footer />
