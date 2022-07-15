@@ -16,6 +16,7 @@ interface makerProps {
 const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
   const [cards, setCards] = useState<Card[]>([
     {
+      id: '1',
       name: 'Bob',
       company: 'Kakao',
       theme: 'light',
@@ -24,6 +25,7 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
       message: 'hello',
     },
     {
+      id: '2',
       name: 'Chris',
       company: 'Kakao',
       theme: 'dark',
@@ -48,11 +50,16 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
       !user && goToLogin();
     });
   });
+
+  const addCard = (newCard: Card) => {
+    setCards((cards) => [...cards, newCard]);
+  };
+
   return (
     <Container>
       <Header handleLogout={handleLogout} />
       <Main>
-        <Editor />
+        <Editor cards={cards} addCard={addCard} />
         <Preview cards={cards} />
       </Main>
       <Footer />

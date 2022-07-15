@@ -10,6 +10,7 @@ export interface FireBaseAuthService {
 
 // Card
 export interface Card {
+  id: string;
   name: string;
   company: string;
   theme: 'light' | 'dark' | 'colorful';
