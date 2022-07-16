@@ -8,9 +8,14 @@ import styled from 'styled-components';
 interface Card_edit_formProps {
   card: Card;
   deleteCard: Function;
+  updateCard: Function;
 }
 
-const Card_edit_form: FC<Card_edit_formProps> = ({ card, deleteCard }) => {
+const Card_edit_form: FC<Card_edit_formProps> = ({
+  card,
+  deleteCard,
+  updateCard,
+}) => {
   const { id, name, company, theme, title, email, message } = card;
 
   const handleDelete = (
@@ -20,18 +25,37 @@ const Card_edit_form: FC<Card_edit_formProps> = ({ card, deleteCard }) => {
     e.preventDefault();
     deleteCard(id);
   };
+
+  const handleUpdate = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const property: string = e.target.name;
+    const text: string = e.target.value;
+    updateCard(id, property, text);
+  };
   return (
     <Form>
-      <Input type="text" name="name" value={name} />
-      <Input type="text" name="company" value={company} />
-      <select name="theme">
-        <option value={theme}>light</option>
-        <option value={theme}>dark</option>
-        <option value={theme}>colorful</option>
+      <Input type="text" name="name" value={name} onChange={handleUpdate} />
+      <Input
+        type="text"
+        name="company"
+        value={company}
+        onChange={handleUpdate}
+      />
+      <select name="theme" onChange={handleUpdate}>
+        <option value={'light'}>light</option>
+        <option value={'dark'}>dark</option>
+        <option value={'colorful'}>colorful</option>
       </select>
-      <Input type="text" name="title" value={title} />
-      <Input type="text" name="email" value={email} />
-      <Textarea name="message" value={message}></Textarea>
+      <Input type="text" name="title" value={title} onChange={handleUpdate} />
+      <Input type="text" name="email" value={email} onChange={handleUpdate} />
+      <Textarea
+        name="message"
+        value={message}
+        onChange={handleUpdate}
+      ></Textarea>
       <ImageFileInputButton />
       <Button name="Delete" handleClick={(e) => handleDelete(e, id)} />
     </Form>

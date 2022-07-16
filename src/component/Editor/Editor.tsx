@@ -9,14 +9,24 @@ interface EditorProps {
   cards: Card[];
   addCard: Function;
   deleteCard: Function;
+  updateCard: Function;
 }
 
-const Editor: FC<EditorProps> = ({ cards, addCard, deleteCard }) => {
+const Editor: FC<EditorProps> = ({
+  cards,
+  addCard,
+  deleteCard,
+  updateCard,
+}) => {
   return (
     <Container>
       <Title>Card Maker</Title>
       {cards.map((card) => (
-        <Card_edit_form card={card} deleteCard={deleteCard} />
+        <Card_edit_form
+          card={card}
+          deleteCard={deleteCard}
+          updateCard={updateCard}
+        />
       ))}
       <Card_add_form addCard={addCard} />
     </Container>
