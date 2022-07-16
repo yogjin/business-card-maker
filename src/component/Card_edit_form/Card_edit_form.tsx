@@ -7,12 +7,19 @@ import styled from 'styled-components';
 
 interface Card_edit_formProps {
   card: Card;
+  deleteCard: Function;
 }
 
-function handleDeleteButton() {}
-
-const Card_edit_form: FC<Card_edit_formProps> = ({ card }) => {
+const Card_edit_form: FC<Card_edit_formProps> = ({ card, deleteCard }) => {
   const { id, name, company, theme, title, email, message } = card;
+
+  const handleDelete = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: string
+  ): void => {
+    e.preventDefault();
+    deleteCard(id);
+  };
   return (
     <Form>
       <Input type="text" name="name" value={name} />
@@ -26,7 +33,7 @@ const Card_edit_form: FC<Card_edit_formProps> = ({ card }) => {
       <Input type="text" name="email" value={email} />
       <Textarea name="message" value={message}></Textarea>
       <ImageFileInputButton />
-      <Button name="Delete" handleClick={handleDeleteButton} />
+      <Button name="Delete" handleClick={(e) => handleDelete(e, id)} />
     </Form>
   );
 };

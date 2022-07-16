@@ -55,11 +55,14 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
     setCards((cards) => [...cards, newCard]);
   };
 
+  const deleteCard = (id: string) => {
+    setCards((cards) => cards.filter((card) => card.id !== id));
+  };
   return (
     <Container>
       <Header handleLogout={handleLogout} />
       <Main>
-        <Editor cards={cards} addCard={addCard} />
+        <Editor cards={cards} addCard={addCard} deleteCard={deleteCard} />
         <Preview cards={cards} />
       </Main>
       <Footer />
