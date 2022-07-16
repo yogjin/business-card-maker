@@ -44,7 +44,7 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
         value={company}
         onChange={handleUpdate}
       />
-      <select name="theme" onChange={handleUpdate}>
+      <select name="theme" value={theme} onChange={handleUpdate}>
         <option value={'light'}>light</option>
         <option value={'dark'}>dark</option>
         <option value={'colorful'}>colorful</option>
