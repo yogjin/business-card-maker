@@ -2,12 +2,12 @@ import { ImageUploader } from 'common/interfaces';
 import React from 'react';
 import { FC } from 'react';
 
-interface ImageFileInputButtonProps {
+interface ImageFileInputProps {
   imageUploader: ImageUploader;
 }
 
-const ImageFileInputButton: FC<ImageFileInputButtonProps> = () => {
+const ImageFileInput: FC<ImageFileInputProps> = () => {
   return <button>Image</button>;
 };
 
-export default ImageFileInputButton;
+export default ImageFileInput;

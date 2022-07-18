@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ImageUploader from 'service/image_uploader';
-import ImageFileInputButton from 'component/ImageFileInputButton/ImageFileInputButton';
+import ImageFileInput from 'component/ImageFileInput/ImageFileInput';
 
 const imageUploader = new ImageUploader();
 interface FileInputProps {}
 const FileInput: FC<FileInputProps> = (props) => (
-  <ImageFileInputButton {...props} imageUploader={imageUploader} />
+  <ImageFileInput {...props} imageUploader={imageUploader} />
 );
 
 const root = ReactDOM.createRoot(
