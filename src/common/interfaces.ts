@@ -22,5 +22,11 @@ export interface Card {
 
 // ImageUploader
 export interface ImageUploader {
-  upload: () => void;
+  upload: (file: File) => Promise<CloudinaryFile>;
+}
+
+// cloudinary file
+export interface CloudinaryFile {
+  original_filename: string;
+  secure_url: string;
 }
