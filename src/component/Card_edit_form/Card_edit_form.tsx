@@ -57,8 +57,10 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
         value={message}
         onChange={handleUpdate}
       ></Textarea>
-      <FileInput />
-      <Button name="Delete" handleClick={(e) => handleDelete(e, id)} />
+      <ButtonDiv>
+        <FileInput />
+        <Button name="Delete" handleClick={(e) => handleDelete(e, id)} />
+      </ButtonDiv>
     </Form>
   );
 };
@@ -80,5 +82,13 @@ const Textarea = styled.textarea`
   flex-basis: 100%;
   font-size: 1rem;
   padding: 0.2em;
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  flex-basis: 100%;
+  & > * {
+    flex: 1;
+  }
 `;
 export default Card_edit_form;

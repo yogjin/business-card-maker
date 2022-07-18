@@ -54,8 +54,10 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
         placeholder="message"
         ref={messageRef}
       ></Textarea>
-      <FileInput />
-      <Button name="Add" handleClick={handleAdd} />
+      <ButtonDiv>
+        <FileInput />
+        <Button name="Add" handleClick={handleAdd} />
+      </ButtonDiv>
     </Form>
   );
 };
@@ -77,5 +79,13 @@ const Textarea = styled.textarea`
   flex-basis: 100%;
   font-size: 1rem;
   padding: 0.2em;
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  flex-basis: 100%;
+  & > * {
+    flex: 1;
+  }
 `;
 export default Card_add_form;
