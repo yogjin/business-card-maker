@@ -18,10 +18,10 @@ interface DataProps {
   name?: boolean;
 }
 const CardComponent: FC<CardProps> = ({ card }) => {
-  const { id, name, company, theme, title, email, message } = card;
+  const { id, name, company, theme, title, email, message, url } = card;
   return (
     <Container theme={theme}>
-      <Image src={tempProfileImage}></Image>
+      <Image src={url || tempProfileImage}></Image>
       <MetaData theme={theme}>
         <Data name>{name}</Data>
         <Data>{company}</Data>

@@ -17,5 +17,18 @@ export interface Card {
   title: string;
   email: string;
   message: string;
-  // picture
+  // picture: CloudinaryFile
+  filename?: string;
+  url?: string;
+}
+
+// ImageUploader
+export interface ImageUploader {
+  upload: (file: File) => Promise<CloudinaryFile>;
+}
+
+// cloudinary file
+export interface CloudinaryFile {
+  original_filename?: string;
+  secure_url?: string;
 }

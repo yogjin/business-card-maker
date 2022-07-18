@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { FC } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ImageUploader from 'service/image_uploader';
+import ImageFileInput from 'component/ImageFileInput/ImageFileInput';
+import { CloudinaryFile } from 'common/interfaces';
+
+const imageUploader = new ImageUploader();
+interface FileInputProps {
+  handleCardWhenFileChange: (file: CloudinaryFile) => void;
+}
+const FileInput: FC<FileInputProps> = (props) => (
+  <ImageFileInput {...props} imageUploader={imageUploader} />
+);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <App FileInput={FileInput} />
   </React.StrictMode>
 );
 
