@@ -1,6 +1,6 @@
-import { Card } from 'common/interfaces';
+import { Card, CloudinaryFile } from 'common/interfaces';
 import Button from 'component/Button/Button';
-import React from 'react';
+import React, { useState } from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 
@@ -17,7 +17,12 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
   updateCard,
   FileInput,
 }) => {
-  const { id, name, company, theme, title, email, message } = card;
+  const { id, name, company, theme, title, email, message, filename, url } =
+    card;
+  const [file, setFile] = useState<CloudinaryFile>({
+    original_filename: undefined,
+    secure_url: undefined,
+  });
 
   const handleDelete = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -34,8 +39,22 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
   ) => {
     const property: string = e.target.name;
     const text: string = e.target.value;
-    updateCard(id, property, text);
+    const updatedCard = { ...card, [property]: text };
+    updateCard(updatedCard);
   };
+
+  const handleCardWhenFileChange = (uploaded: CloudinaryFile) => {
+    const original_filename = uploaded.original_filename;
+    const secure_url = uploaded.secure_url;
+    const updatedCard = {
+      ...card,
+      filename: original_filename,
+      url: secure_url,
+    };
+    updateCard(updatedCard);
+    setFile({ original_filename, secure_url });
+  };
+
   return (
     <Form>
       <Input type="text" name="name" value={name} onChange={handleUpdate} />
@@ -58,7 +77,10 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
         onChange={handleUpdate}
       ></Textarea>
       <ButtonDiv>
-        <FileInput />
+        <FileInput
+          name={file.original_filename}
+          handleCardWhenFileChange={handleCardWhenFileChange}
+        />
         <Button name="Delete" handleClick={(e) => handleDelete(e, id)} />
       </ButtonDiv>
     </Form>

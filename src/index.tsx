@@ -5,9 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ImageUploader from 'service/image_uploader';
 import ImageFileInput from 'component/ImageFileInput/ImageFileInput';
+import { CloudinaryFile } from 'common/interfaces';
 
 const imageUploader = new ImageUploader();
-interface FileInputProps {}
+interface FileInputProps {
+  handleCardWhenFileChange: (file: CloudinaryFile) => void;
+}
 const FileInput: FC<FileInputProps> = (props) => (
   <ImageFileInput {...props} imageUploader={imageUploader} />
 );

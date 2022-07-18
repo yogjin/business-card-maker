@@ -1,6 +1,6 @@
-import { Card } from 'common/interfaces';
+import { Card, CloudinaryFile } from 'common/interfaces';
 import Button from 'component/Button/Button';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 
@@ -17,6 +17,10 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const [file, setFile] = useState<CloudinaryFile>({
+    original_filename: undefined,
+    secure_url: undefined,
+  });
 
   const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -28,9 +32,20 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
       title: titleRef.current?.value || '',
       email: emailRef.current?.value || '',
       message: messageRef.current?.value || '',
+      filename: file.original_filename,
+      url: file.secure_url,
     };
     formRef.current?.reset();
     addCard(newCard);
+  };
+
+  const handleCardWhenFileChange = (uploaded: CloudinaryFile) => {
+    const original_filename = uploaded.original_filename;
+    const secure_url = uploaded.secure_url;
+    setFile({
+      original_filename,
+      secure_url,
+    });
   };
 
   return (
@@ -55,7 +70,10 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
         ref={messageRef}
       ></Textarea>
       <ButtonDiv>
-        <FileInput />
+        <FileInput
+          name={file.original_filename}
+          handleCardWhenFileChange={handleCardWhenFileChange}
+        />
         <Button name="Add" handleClick={handleAdd} />
       </ButtonDiv>
     </Form>
