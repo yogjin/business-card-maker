@@ -19,3 +19,8 @@ export interface Card {
   message: string;
   // picture
 }
+
+// ImageUploader
+export interface ImageUploader {
+  upload: () => void;
+}

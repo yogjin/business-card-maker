@@ -11,9 +11,10 @@ import styled from 'styled-components';
 
 interface makerProps {
   fireBaseAuthService: FireBaseAuthService;
+  FileInput: Function;
 }
 
-const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
+const Maker: FC<makerProps> = ({ fireBaseAuthService, FileInput }) => {
   const [cards, setCards] = useState<Card[]>([
     {
       id: '1',
@@ -78,6 +79,7 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService }) => {
           addCard={addCard}
           deleteCard={deleteCard}
           updateCard={updateCard}
+          FileInput={FileInput}
         />
         <Preview cards={cards} />
       </Main>

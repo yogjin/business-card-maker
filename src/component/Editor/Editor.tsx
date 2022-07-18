@@ -10,6 +10,7 @@ interface EditorProps {
   addCard: Function;
   deleteCard: Function;
   updateCard: Function;
+  FileInput: Function;
 }
 
 const Editor: FC<EditorProps> = ({
@@ -17,6 +18,7 @@ const Editor: FC<EditorProps> = ({
   addCard,
   deleteCard,
   updateCard,
+  FileInput,
 }) => {
   return (
     <Container>
@@ -26,9 +28,10 @@ const Editor: FC<EditorProps> = ({
           card={card}
           deleteCard={deleteCard}
           updateCard={updateCard}
+          FileInput={FileInput}
         />
       ))}
-      <Card_add_form addCard={addCard} />
+      <Card_add_form addCard={addCard} FileInput={FileInput} />
     </Container>
   );
 };

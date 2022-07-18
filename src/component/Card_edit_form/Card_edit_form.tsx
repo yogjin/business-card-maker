@@ -1,6 +1,5 @@
 import { Card } from 'common/interfaces';
 import Button from 'component/Button/Button';
-import ImageFileInputButton from 'component/ImageFileInputButton/ImageFileInputButton';
 import React from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
@@ -9,12 +8,14 @@ interface Card_edit_formProps {
   card: Card;
   deleteCard: Function;
   updateCard: Function;
+  FileInput: Function;
 }
 
 const Card_edit_form: FC<Card_edit_formProps> = ({
   card,
   deleteCard,
   updateCard,
+  FileInput,
 }) => {
   const { id, name, company, theme, title, email, message } = card;
 
@@ -56,7 +57,7 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
         value={message}
         onChange={handleUpdate}
       ></Textarea>
-      <ImageFileInputButton />
+      <FileInput />
       <Button name="Delete" handleClick={(e) => handleDelete(e, id)} />
     </Form>
   );

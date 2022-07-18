@@ -1,15 +1,15 @@
 import { Card } from 'common/interfaces';
 import Button from 'component/Button/Button';
-import ImageFileInputButton from 'component/ImageFileInputButton/ImageFileInputButton';
 import React, { useRef } from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
 
 interface Card_add_formProps {
   addCard: Function;
+  FileInput: Function;
 }
 
-const Card_add_form: FC<Card_add_formProps> = ({ addCard }) => {
+const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const companyRef = useRef<HTMLInputElement>(null);
@@ -54,7 +54,7 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard }) => {
         placeholder="message"
         ref={messageRef}
       ></Textarea>
-      <ImageFileInputButton />
+      <FileInput />
       <Button name="Add" handleClick={handleAdd} />
     </Form>
   );
