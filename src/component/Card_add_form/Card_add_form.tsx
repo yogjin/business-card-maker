@@ -32,8 +32,8 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
       title: titleRef.current?.value || '',
       email: emailRef.current?.value || '',
       message: messageRef.current?.value || '',
-      filename: file.original_filename,
-      url: file.secure_url,
+      filename: file.original_filename || '',
+      url: file.secure_url || '',
     };
     formRef.current?.reset();
     addCard(newCard);
