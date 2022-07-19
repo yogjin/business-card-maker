@@ -74,7 +74,7 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
           name={file.original_filename}
           handleCardWhenFileChange={handleCardWhenFileChange}
         />
-        <Button name="Add" handleClick={handleAdd} />
+        <Button name="Add" handleClick={handleAdd} color="wheat" />
       </ButtonDiv>
     </Form>
   );
@@ -100,6 +100,7 @@ const Textarea = styled.textarea`
 `;
 
 const ButtonDiv = styled.div`
+  height: 2rem;
   display: flex;
   flex-basis: 100%;
   & > * {

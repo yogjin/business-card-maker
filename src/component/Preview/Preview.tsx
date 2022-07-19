@@ -23,7 +23,6 @@ const Preview: FC<PreviewProps> = ({ cards }) => {
 
 const Container = styled.div`
   text-align: center;
-  background-color: wheat;
   flex-basis: 50%;
 `;
 const List = styled.ul`

@@ -19,10 +19,6 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
 }) => {
   const { id, name, company, theme, title, email, message, filename, url } =
     card;
-  const [file, setFile] = useState<CloudinaryFile>({
-    original_filename: undefined,
-    secure_url: undefined,
-  });
 
   const handleDelete = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -52,7 +48,6 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
       url: secure_url,
     };
     updateCard(updatedCard);
-    setFile({ original_filename, secure_url });
   };
 
   return (
@@ -78,10 +73,14 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
       ></Textarea>
       <ButtonDiv>
         <FileInput
-          name={file.original_filename}
+          name={filename}
           handleCardWhenFileChange={handleCardWhenFileChange}
         />
-        <Button name="Delete" handleClick={(e) => handleDelete(e, id)} />
+        <Button
+          name="Delete"
+          handleClick={(e) => handleDelete(e, id)}
+          color="#2980b9"
+        />
       </ButtonDiv>
     </Form>
   );
@@ -107,10 +106,12 @@ const Textarea = styled.textarea`
 `;
 
 const ButtonDiv = styled.div`
+  height: 2rem;
   display: flex;
   flex-basis: 100%;
   & > * {
     flex: 1;
   }
 `;
+
 export default Card_edit_form;
