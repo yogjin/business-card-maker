@@ -25,7 +25,7 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
   const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const newCard: Card = {
-      id: new Date().toString(),
+      id: Date.now().toString(),
       name: nameRef.current?.value || '',
       company: companyRef.current?.value || '',
       theme: themeRef.current?.value as Card['theme'],
