@@ -19,7 +19,7 @@ interface makerProps {
   FileInput: Function;
 }
 interface LoginResult {
-  id: string;
+  userId: string;
 }
 
 const Maker: FC<makerProps> = ({
@@ -29,7 +29,7 @@ const Maker: FC<makerProps> = ({
 }) => {
   const [cards, setCards] = useState<Card[]>([]);
   const location = useLocation();
-  const { id } = location.state as LoginResult;
+  const { userId } = location.state as LoginResult;
   const navigate = useNavigate();
 
   const handleLogout = (): void => {
@@ -45,7 +45,7 @@ const Maker: FC<makerProps> = ({
       !user && goToLogin();
     });
     async function getCardsAndSet() {
-      const cards: Card[] = await fireBaseRealTimeDB.getCards(id);
+      const cards: Card[] = await fireBaseRealTimeDB.getCards(userId);
       setCards(cards);
     }
     getCardsAndSet();
@@ -53,7 +53,7 @@ const Maker: FC<makerProps> = ({
 
   const addCard = (newCard: Card) => {
     setCards((cards) => {
-      fireBaseRealTimeDB.setCards(id, newCard);
+      fireBaseRealTimeDB.setCards(userId, newCard);
       return [...cards, newCard];
     });
   };
