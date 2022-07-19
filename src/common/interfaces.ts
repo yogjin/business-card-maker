@@ -7,6 +7,11 @@ export interface FireBaseAuthService {
   logout(): void;
   onAuthChange: (onUserChanged: Function) => void;
 }
+// FireBase realtime DB
+export interface FireBaseRealTimeDB {
+  set: Function;
+  get: Function;
+}
 
 // Card
 export interface Card {
