@@ -4,9 +4,14 @@ import React, {
   ChangeEventHandler,
   MouseEvent,
   useRef,
+  useState,
 } from 'react';
 import { FC } from 'react';
 import styled from 'styled-components';
+
+interface ButtonProps {
+  isLoading: Boolean;
+}
 
 interface ImageFileInputProps {
   imageUploader: ImageUploader;
@@ -19,6 +24,8 @@ const ImageFileInput: FC<ImageFileInputProps> = ({
   name,
   handleCardWhenFileChange,
 }) => {
+  const [isLoading, setIsLoading] = useState<Boolean>(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const handleButtonClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -27,12 +34,13 @@ const ImageFileInput: FC<ImageFileInputProps> = ({
 
   const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
-
+    setIsLoading((isLoading) => !isLoading);
     const uploaded: CloudinaryFile = await imageUploader.upload(
       e.target.files[0]
     );
 
     handleCardWhenFileChange(uploaded);
+    setIsLoading((isLoading) => !isLoading);
   };
   return (
     <Container>
@@ -43,7 +51,9 @@ const ImageFileInput: FC<ImageFileInputProps> = ({
         ref={inputRef}
         onChange={handleFileChange}
       />
-      <Button onClick={handleButtonClick}>{name || 'No file'}</Button>
+      <Button onClick={handleButtonClick} isLoading={isLoading}>
+        {name || 'No file'}
+      </Button>
     </Container>
   );
 };
@@ -52,7 +62,8 @@ const Container = styled.div``;
 const Input = styled.input`
   display: none;
 `;
-const Button = styled.button`
+const Button = styled.button<ButtonProps>`
   width: 100%;
+  background-color: ${({ isLoading }) => (isLoading ? 'blue' : '')};
 `;
 export default ImageFileInput;
