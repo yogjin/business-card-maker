@@ -7,10 +7,10 @@ export class FireBaseRealTimeDBImpl implements FireBaseRealTimeDB {
   constructor() {
     this.database = getDatabase(firebaseApp);
   }
-  set(userId: string, card: Card) {
+  setCards(userId: string, card: Card) {
     set(ref(this.database, `users/${userId}/cards/${card.id}`), card);
   }
-  async get(userId: string) {
+  async getCards(userId: string) {
     let cards = await get(ref(this.database, `users/${userId}/cards/`))
       .then((snapshot) => {
         if (snapshot.exists()) {
