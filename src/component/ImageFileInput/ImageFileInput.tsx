@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
 interface ButtonProps {
   isLoading: Boolean;
@@ -58,6 +58,14 @@ const ImageFileInput: FC<ImageFileInputProps> = ({
   );
 };
 
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -66,8 +74,21 @@ const Input = styled.input`
   display: none;
 `;
 const Button = styled.button<ButtonProps>`
-  width: 100%;
-  height: 100%;
-  background-color: ${({ isLoading }) => (isLoading ? 'blue' : '')};
+  ${({ isLoading }) =>
+    !isLoading
+      ? css`
+          width: 100%;
+          height: 100%;
+        `
+      : css`
+          font-size: 0;
+          width: 1.5rem;
+          height: 1.5rem;
+          border: 3px solid lightgray;
+          border-top: 3px solid black;
+          border-radius: 50%;
+          background-color: transparent;
+          animation: ${spin} 2s linear infinite;
+        `}
 `;
 export default ImageFileInput;
