@@ -11,6 +11,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 interface ButtonProps {
   isLoading: Boolean;
+  hasFile: Boolean;
 }
 
 interface ImageFileInputProps {
@@ -51,7 +52,11 @@ const ImageFileInput: FC<ImageFileInputProps> = ({
         ref={inputRef}
         onChange={handleFileChange}
       />
-      <Button onClick={handleButtonClick} isLoading={isLoading}>
+      <Button
+        onClick={handleButtonClick}
+        isLoading={isLoading}
+        hasFile={name ? true : false}
+      >
         {name || 'No file'}
       </Button>
     </Container>
@@ -74,12 +79,29 @@ const Input = styled.input`
   display: none;
 `;
 const Button = styled.button<ButtonProps>`
-  ${({ isLoading }) =>
+  ${({ isLoading, hasFile }) =>
     !isLoading
-      ? css`
-          width: 100%;
-          height: 100%;
-        `
+      ? hasFile
+        ? css`
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: pink;
+            cursor: pointer;
+            &:hover {
+              opacity: 0.9;
+            }
+          `
+        : css`
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: lightgrey;
+            cursor: pointer;
+            &:hover {
+              opacity: 0.9;
+            }
+          `
       : css`
           font-size: 0;
           width: 1.5rem;
@@ -89,6 +111,7 @@ const Button = styled.button<ButtonProps>`
           border-radius: 50%;
           background-color: transparent;
           animation: ${spin} 2s linear infinite;
+          pointer-events: none;
         `}
 `;
 export default ImageFileInput;
