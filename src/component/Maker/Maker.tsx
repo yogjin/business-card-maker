@@ -27,26 +27,7 @@ const Maker: FC<makerProps> = ({
   fireBaseRealTimeDB,
   FileInput,
 }) => {
-  const [cards, setCards] = useState<Card[]>([
-    {
-      id: '1',
-      name: 'Bob',
-      company: 'Kakao',
-      theme: 'light',
-      title: 'Frontend Developer',
-      email: 'asb@s.com',
-      message: 'hello',
-    },
-    {
-      id: '2',
-      name: 'Chris',
-      company: 'Kakao',
-      theme: 'dark',
-      title: 'Backend Developer',
-      email: 'asb@s.com',
-      message: 'hihihihihihi',
-    },
-  ]);
+  const [cards, setCards] = useState<Card[]>([]);
   const location = useLocation();
   const { id } = location.state as LoginResult;
   const navigate = useNavigate();
