@@ -11,6 +11,7 @@ export interface FireBaseAuthService {
 export interface FireBaseRealTimeDB {
   setCards: (userId: string, card: Card) => void;
   getCards: (userId: string) => Promise<Card[]>;
+  removeCard: (userId: string, cardId: string) => void;
 }
 
 // Card

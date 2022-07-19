@@ -28,8 +28,8 @@ const Maker: FC<makerProps> = ({
   FileInput,
 }) => {
   const [cards, setCards] = useState<Card[]>([]);
-  const location = useLocation();
-  const { userId } = location.state as LoginResult;
+  const location = useLocation().state as LoginResult;
+  const userId = location.userId;
   const navigate = useNavigate();
 
   const handleLogout = (): void => {
@@ -60,6 +60,7 @@ const Maker: FC<makerProps> = ({
 
   const deleteCard = (id: string): void => {
     setCards((cards) => cards.filter((card) => card.id !== id));
+    fireBaseRealTimeDB.removeCard(userId, id);
   };
 
   const updateCard = (updatedCard: Card): void => {

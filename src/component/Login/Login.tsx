@@ -16,7 +16,7 @@ const Login: FC<LoginProps> = ({ fireBaseAuthService }) => {
   let navigate = useNavigate();
 
   const goToMaker = (userId: string) => {
-    navigate('/maker', { state: { id: userId } });
+    navigate('/maker', { state: { userId } });
   };
 
   const onClickLoginButton = (providerName: string) => {

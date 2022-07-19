@@ -1,6 +1,13 @@
 import { Card, FireBaseRealTimeDB } from './../common/interfaces';
 import { firebaseApp } from 'service/firebase';
-import { Database, get, getDatabase, ref, set } from 'firebase/database';
+import {
+  Database,
+  get,
+  getDatabase,
+  ref,
+  remove,
+  set,
+} from 'firebase/database';
 
 export class FireBaseRealTimeDBImpl implements FireBaseRealTimeDB {
   private database: Database;
@@ -24,5 +31,8 @@ export class FireBaseRealTimeDBImpl implements FireBaseRealTimeDB {
     Object.keys(cards).map((key) => arrCards.push(cards[key]));
 
     return arrCards;
+  }
+  removeCard(userId: string, cardId: string) {
+    remove(ref(this.database, `users/${userId}/cards/${cardId}`));
   }
 }
