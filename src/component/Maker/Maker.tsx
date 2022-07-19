@@ -1,4 +1,8 @@
-import { Card, FireBaseAuthService } from 'common/interfaces';
+import {
+  Card,
+  FireBaseAuthService,
+  FireBaseRealTimeDB,
+} from 'common/interfaces';
 import Editor from 'component/Editor/Editor';
 import Footer from 'component/Footer/Footer';
 import Header from 'component/Header/Header';
@@ -11,10 +15,18 @@ import styled from 'styled-components';
 
 interface makerProps {
   fireBaseAuthService: FireBaseAuthService;
+  fireBaseRealTimeDB: FireBaseRealTimeDB;
   FileInput: Function;
 }
+interface LoginResult {
+  id: string;
+}
 
-const Maker: FC<makerProps> = ({ fireBaseAuthService, FileInput }) => {
+const Maker: FC<makerProps> = ({
+  fireBaseAuthService,
+  fireBaseRealTimeDB,
+  FileInput,
+}) => {
   const [cards, setCards] = useState<Card[]>([
     {
       id: '1',
@@ -36,6 +48,7 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService, FileInput }) => {
     },
   ]);
   const location = useLocation();
+  const { id } = location.state as LoginResult;
   const navigate = useNavigate();
 
   const handleLogout = (): void => {
@@ -53,7 +66,10 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService, FileInput }) => {
   });
 
   const addCard = (newCard: Card) => {
-    setCards((cards) => [...cards, newCard]);
+    setCards((cards) => {
+      fireBaseRealTimeDB.setCards(id, newCard);
+      return [...cards, newCard];
+    });
   };
 
   const deleteCard = (id: string): void => {
