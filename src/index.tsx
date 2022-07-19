@@ -22,7 +22,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App FileInput={FileInput} />
+    <App FileInput={FileInput} fireBaseRealTimeDB={fireBaseRealTimeDB} />
   </React.StrictMode>
 );
 
