@@ -58,12 +58,16 @@ const ImageFileInput: FC<ImageFileInputProps> = ({
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 const Input = styled.input`
   display: none;
 `;
 const Button = styled.button<ButtonProps>`
   width: 100%;
+  height: 100%;
   background-color: ${({ isLoading }) => (isLoading ? 'blue' : '')};
 `;
 export default ImageFileInput;

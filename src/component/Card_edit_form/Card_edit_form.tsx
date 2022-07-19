@@ -76,7 +76,11 @@ const Card_edit_form: FC<Card_edit_formProps> = ({
           name={filename}
           handleCardWhenFileChange={handleCardWhenFileChange}
         />
-        <Button name="Delete" handleClick={(e) => handleDelete(e, id)} />
+        <Button
+          name="Delete"
+          handleClick={(e) => handleDelete(e, id)}
+          color="#2980b9"
+        />
       </ButtonDiv>
     </Form>
   );
@@ -102,10 +106,12 @@ const Textarea = styled.textarea`
 `;
 
 const ButtonDiv = styled.div`
+  height: 2rem;
   display: flex;
   flex-basis: 100%;
   & > * {
     flex: 1;
   }
 `;
+
 export default Card_edit_form;
