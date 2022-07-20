@@ -43,6 +43,6 @@ const AppContainer = styled.div`
   display: flex;
   justify-content: center;
   height: 100vh;
-  background-color: white;
+  background-color: gray;
 `;
 export default App;
