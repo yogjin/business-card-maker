@@ -5,12 +5,14 @@ import Login from './component/Login/Login';
 import Maker from './component/Maker/Maker';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { FireBaseAuthServiceImpl } from 'service/firebase_auth_service';
+import { FireBaseRealTimeDB } from 'common/interfaces';
 interface AppProps {
   FileInput: Function;
+  fireBaseRealTimeDB: FireBaseRealTimeDB;
 }
 const fireBaseAuthService = new FireBaseAuthServiceImpl();
 
-const App: FC<AppProps> = ({ FileInput }) => {
+const App: FC<AppProps> = ({ FileInput, fireBaseRealTimeDB }) => {
   return (
     <>
       <AppContainer>
@@ -25,6 +27,7 @@ const App: FC<AppProps> = ({ FileInput }) => {
               element={
                 <Maker
                   fireBaseAuthService={fireBaseAuthService}
+                  fireBaseRealTimeDB={fireBaseRealTimeDB}
                   FileInput={FileInput}
                 />
               }

@@ -7,6 +7,15 @@ export interface FireBaseAuthService {
   logout(): void;
   onAuthChange: (onUserChanged: Function) => void;
 }
+// FireBase realtime DB
+export interface FireBaseRealTimeDB {
+  setCards: (userId: string, card: Card) => void;
+  removeCard: (userId: string, cardId: string) => void;
+  syncCards: (
+    userId: string,
+    setCards: React.Dispatch<React.SetStateAction<Card[]>>
+  ) => Function;
+}
 
 // Card
 export interface Card {

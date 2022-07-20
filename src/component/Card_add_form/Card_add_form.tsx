@@ -18,24 +18,25 @@ const Card_add_form: FC<Card_add_formProps> = ({ addCard, FileInput }) => {
   const emailRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const [file, setFile] = useState<CloudinaryFile>({
-    original_filename: undefined,
-    secure_url: undefined,
+    original_filename: '',
+    secure_url: '',
   });
 
   const handleAdd = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const newCard: Card = {
-      id: new Date().toString(),
+      id: Date.now().toString(),
       name: nameRef.current?.value || '',
       company: companyRef.current?.value || '',
       theme: themeRef.current?.value as Card['theme'],
       title: titleRef.current?.value || '',
       email: emailRef.current?.value || '',
       message: messageRef.current?.value || '',
-      filename: file.original_filename,
-      url: file.secure_url,
+      filename: file.original_filename || '',
+      url: file.secure_url || '',
     };
     formRef.current?.reset();
+    setFile({ original_filename: '', secure_url: '' });
     addCard(newCard);
   };
 

@@ -1,4 +1,8 @@
-import { Card, FireBaseAuthService } from 'common/interfaces';
+import {
+  Card,
+  FireBaseAuthService,
+  FireBaseRealTimeDB,
+} from 'common/interfaces';
 import Editor from 'component/Editor/Editor';
 import Footer from 'component/Footer/Footer';
 import Header from 'component/Header/Header';
@@ -11,31 +15,21 @@ import styled from 'styled-components';
 
 interface makerProps {
   fireBaseAuthService: FireBaseAuthService;
+  fireBaseRealTimeDB: FireBaseRealTimeDB;
   FileInput: Function;
 }
+interface LoginResult {
+  userId: string;
+}
 
-const Maker: FC<makerProps> = ({ fireBaseAuthService, FileInput }) => {
-  const [cards, setCards] = useState<Card[]>([
-    {
-      id: '1',
-      name: 'Bob',
-      company: 'Kakao',
-      theme: 'light',
-      title: 'Frontend Developer',
-      email: 'asb@s.com',
-      message: 'hello',
-    },
-    {
-      id: '2',
-      name: 'Chris',
-      company: 'Kakao',
-      theme: 'dark',
-      title: 'Backend Developer',
-      email: 'asb@s.com',
-      message: 'hihihihihihi',
-    },
-  ]);
-  const location = useLocation();
+const Maker: FC<makerProps> = ({
+  fireBaseAuthService,
+  fireBaseRealTimeDB,
+  FileInput,
+}) => {
+  const [cards, setCards] = useState<Card[]>([]);
+  const location = useLocation().state as LoginResult;
+  const userId = location.userId;
   const navigate = useNavigate();
 
   const handleLogout = (): void => {
@@ -50,21 +44,37 @@ const Maker: FC<makerProps> = ({ fireBaseAuthService, FileInput }) => {
     fireBaseAuthService.onAuthChange((user: User | null) => {
       !user && goToLogin();
     });
-  });
+  }, []);
+
+  useEffect(() => {
+    const stopSync = fireBaseRealTimeDB.syncCards(userId, setCards);
+
+    return () => stopSync(); // Detach listeners
+  }, [fireBaseRealTimeDB, userId]);
 
   const addCard = (newCard: Card) => {
-    setCards((cards) => [...cards, newCard]);
+    setCards((cards) => {
+      fireBaseRealTimeDB.setCards(userId, newCard);
+      return [...cards, newCard];
+    });
   };
 
   const deleteCard = (id: string): void => {
     setCards((cards) => cards.filter((card) => card.id !== id));
+    fireBaseRealTimeDB.removeCard(userId, id);
   };
 
   const updateCard = (updatedCard: Card): void => {
     const updated: Card[] = cards.map((card) =>
       card.id === updatedCard.id ? updatedCard : card
     );
-    setCards(updated);
+    setCards(() => {
+      fireBaseRealTimeDB.setCards(userId, updatedCard);
+      // 이렇게 하면 user -> DB는 바로바로 set되지만 DB->user는 안된다.
+      // DB->user는 사실상 쓸일이 거의 없을 것 같지만 진정한 의미의 sync가 맞지않게 된다.
+      // 따라서 ref.on()을 쓰는게 맞다.
+      return updated;
+    });
   };
   return (
     <Container>
