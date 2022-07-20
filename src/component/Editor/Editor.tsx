@@ -45,5 +45,10 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 1.5rem;
+  position: sticky;
+  top: 0px;
+  padding: 0.8rem;
+  margin-top: 0;
+  background-color: wheat;
 `;
 export default Editor;
