@@ -10,8 +10,11 @@ export interface FireBaseAuthService {
 // FireBase realtime DB
 export interface FireBaseRealTimeDB {
   setCards: (userId: string, card: Card) => void;
-  getCards: (userId: string) => Promise<Card[]>;
   removeCard: (userId: string, cardId: string) => void;
+  syncCards: (
+    userId: string,
+    setCards: React.Dispatch<React.SetStateAction<Card[]>>
+  ) => void;
 }
 
 // Card

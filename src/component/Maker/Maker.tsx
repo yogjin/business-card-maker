@@ -47,11 +47,7 @@ const Maker: FC<makerProps> = ({
   }, []);
 
   useEffect(() => {
-    async function getCardsAndSet() {
-      const cards: Card[] = await fireBaseRealTimeDB.getCards(userId);
-      setCards(cards);
-    }
-    getCardsAndSet();
+    fireBaseRealTimeDB.syncCards(userId, setCards);
   }, [fireBaseRealTimeDB, userId]);
 
   const addCard = (newCard: Card) => {
