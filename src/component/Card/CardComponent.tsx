@@ -37,7 +37,7 @@ const Container = styled.li<ContainerProps>`
   border: 1px solid black;
   border-radius: 1rem;
   margin: 0.5em 3em;
-  padding: 1em;
+  padding: 1.2em;
   background: ${(props) => {
     switch (props.theme) {
       case 'light':
@@ -65,14 +65,14 @@ const MetaData = styled.div<MetaDataProps>`
   color: ${({ theme }) => (theme === 'dark' ? 'white' : 'black')};
 `;
 const Data = styled.span<DataProps>`
-  font-size: ${(props) => (props.name ? '1.5rem' : '1rem')};
+  font-size: ${(props) => (props.name ? '1.8rem' : '1.2rem')};
   text-align: left;
   &:nth-child(2)::after {
     content: '';
     display: block;
     width: 90%;
     height: 1px;
-    background-color: red;
+    background-color: lightgray;
   }
 `;
 export default CardComponent;
