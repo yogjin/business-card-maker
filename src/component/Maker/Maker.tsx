@@ -96,6 +96,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 80rem;
+  background-color: white;
 `;
 
 const Main = styled.div`
