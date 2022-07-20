@@ -53,8 +53,9 @@ const Container = styled.li<ContainerProps>`
 `;
 const Image = styled.img`
   flex-basis: 15%;
-  width: 10rem;
-  padding-right: 1.5em;
+  width: 8rem;
+  height: 8rem;
+  margin-right: 1.5em;
   border-radius: 50%;
 `;
 const MetaData = styled.div<MetaDataProps>`
