@@ -95,6 +95,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 80rem;
 `;
 
 const Main = styled.div`
