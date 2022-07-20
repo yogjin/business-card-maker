@@ -44,12 +44,15 @@ const Maker: FC<makerProps> = ({
     fireBaseAuthService.onAuthChange((user: User | null) => {
       !user && goToLogin();
     });
+  }, []);
+
+  useEffect(() => {
     async function getCardsAndSet() {
       const cards: Card[] = await fireBaseRealTimeDB.getCards(userId);
       setCards(cards);
     }
     getCardsAndSet();
-  }, []);
+  }, [fireBaseRealTimeDB, userId]);
 
   const addCard = (newCard: Card) => {
     setCards((cards) => {
