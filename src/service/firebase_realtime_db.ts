@@ -1,4 +1,4 @@
-import { Card, FireBaseRealTimeDB } from './../common/interfaces';
+import { Card, FireBaseRealTimeDB } from '../common/interfaces';
 import { firebaseApp } from 'service/firebase';
 import {
   Database,

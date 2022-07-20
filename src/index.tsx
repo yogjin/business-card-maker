@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import ImageUploader from 'service/image_uploader';
 import ImageFileInput from 'component/ImageFileInput/ImageFileInput';
 import { CloudinaryFile } from 'common/interfaces';
-import { FireBaseRealTimeDBImpl } from 'service/firebase_readtime_db';
+import { FireBaseRealTimeDBImpl } from 'service/firebase_realtime_db';
 
 const fireBaseRealTimeDB = new FireBaseRealTimeDBImpl();
 const imageUploader = new ImageUploader();
