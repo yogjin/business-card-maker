@@ -14,7 +14,7 @@ export interface FireBaseRealTimeDB {
   syncCards: (
     userId: string,
     setCards: React.Dispatch<React.SetStateAction<Card[]>>
-  ) => void;
+  ) => Function;
 }
 
 // Card

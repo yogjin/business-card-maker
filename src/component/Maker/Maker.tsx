@@ -47,7 +47,9 @@ const Maker: FC<makerProps> = ({
   }, []);
 
   useEffect(() => {
-    fireBaseRealTimeDB.syncCards(userId, setCards);
+    const stopSync = fireBaseRealTimeDB.syncCards(userId, setCards);
+
+    return () => stopSync(); // Detach listeners
   }, [fireBaseRealTimeDB, userId]);
 
   const addCard = (newCard: Card) => {

@@ -4,6 +4,7 @@ import {
   Database,
   get,
   getDatabase,
+  off,
   onValue,
   ref,
   remove,
@@ -22,13 +23,16 @@ export class FireBaseRealTimeDBImpl implements FireBaseRealTimeDB {
     userId: string,
     setCards: React.Dispatch<React.SetStateAction<Card[]>>
   ) {
-    onValue(ref(this.database, `users/${userId}/cards/`), (snapshot) => {
+    const syncRef = ref(this.database, `users/${userId}/cards/`);
+    onValue(syncRef, (snapshot) => {
       const arrCards: Card[] = [];
       const cards = snapshot.val();
       cards && Object.keys(cards).map((key) => arrCards.push(cards[key]));
 
       setCards(arrCards);
     });
+
+    return () => off(syncRef); // Detach listeners function
   }
   removeCard(userId: string, cardId: string) {
     remove(ref(this.database, `users/${userId}/cards/${cardId}`));
