@@ -101,6 +101,7 @@ const Container = styled.div`
 const Main = styled.div`
   flex: 1;
   display: flex;
+  min-height: 0;
   @media screen and (max-width: 42rem) {
     flex-direction: column;
   }

@@ -24,6 +24,7 @@ const Preview: FC<PreviewProps> = ({ cards }) => {
 const Container = styled.div`
   text-align: center;
   flex-basis: 50%;
+  overflow-y: auto;
 `;
 const List = styled.ul`
   display: flex;

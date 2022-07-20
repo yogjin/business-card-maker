@@ -40,6 +40,7 @@ const Container = styled.div`
   text-align: center;
   flex-basis: 50%;
   border-right: 1px solid gray;
+  overflow-y: auto;
 `;
 
 const Title = styled.h1`
