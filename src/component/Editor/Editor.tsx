@@ -25,6 +25,7 @@ const Editor: FC<EditorProps> = ({
       <Title>Card Maker</Title>
       {cards.map((card) => (
         <Card_edit_form
+          key={card.id}
           card={card}
           deleteCard={deleteCard}
           updateCard={updateCard}

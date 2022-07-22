@@ -15,7 +15,7 @@ interface MetaDataProps {
   theme: Card['theme'];
 }
 interface DataProps {
-  name?: boolean;
+  $name?: boolean;
 }
 const CardComponent: FC<CardProps> = ({ card }) => {
   const { id, name, company, theme, title, email, message, url } = card;
@@ -23,7 +23,7 @@ const CardComponent: FC<CardProps> = ({ card }) => {
     <Container theme={theme}>
       <Image src={url || tempProfileImage}></Image>
       <MetaData theme={theme}>
-        <Data name>{name}</Data>
+        <Data $name>{name}</Data>
         <Data>{company}</Data>
         <Data>{title}</Data>
         <Data>{email}</Data>
@@ -65,7 +65,7 @@ const MetaData = styled.div<MetaDataProps>`
   color: ${({ theme }) => (theme === 'dark' ? 'white' : 'black')};
 `;
 const Data = styled.span<DataProps>`
-  font-size: ${(props) => (props.name ? '1.8rem' : '1.2rem')};
+  font-size: ${(props) => (props.$name ? '1.8rem' : '1.2rem')};
   text-align: left;
   &:nth-child(2)::after {
     content: '';
