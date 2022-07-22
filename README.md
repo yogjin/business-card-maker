@@ -1,46 +1,83 @@
-# Getting Started with Create React App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5bc28dce-331c-4034-86f0-f1be0ccbefa2/deploy-status)](https://app.netlify.com/sites/devcarrrd/deploys)
+# business-card-maker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+간단한 개발자 명함을 만들 수 있습니다.
 
-## Available Scripts
+https://devcarrrd.netlify.app/
 
-In the project directory, you can run:
+## 이용 방법
 
-### `npm start`
+### 1. Google 계정으로 로그인
+![스크린샷 2022-07-22 오전 10 00 28](https://user-images.githubusercontent.com/33623078/180339458-492e1f15-8f73-4ec9-9ca9-502f632599e8.jpg)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 2. 카드 작성 방법
+<img width="1447" alt="image" src="https://user-images.githubusercontent.com/33623078/180339838-f7ba008b-f0c8-4a89-8023-3c3ce14b9354.png">
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. input에 정보를 입력
 
-### `npm test`
+2. 프로필 사진 추가
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. 카드 추가하기
 
-### `npm run build`
+### 3. 카드 여러개 생성 가능
+<img width="1447" alt="image" src="https://user-images.githubusercontent.com/33623078/180341030-9434c5b5-174b-4248-abf7-7156006b31dc.png">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 사용 기술
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+React, TypeScript (Rendering, Logic)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Styled-components (style)
 
-### `npm run eject`
+firebase: OAuth(google), Realtime database
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+react-router-dom
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Cloudinary (Store Card Profile)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+netlify (deployment web server)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 구조
+```
+📦src
+ ┣ 📂common
+ ┃ ┗ 📜interfaces.ts
+ ┣ 📂component
+ ┃ ┣ 📂Button
+ ┃ ┃ ┗ 📜Button.tsx
+ ┃ ┣ 📂Card
+ ┃ ┃ ┗ 📜CardComponent.tsx
+ ┃ ┣ 📂Card_add_form
+ ┃ ┃ ┗ 📜Card_add_form.tsx
+ ┃ ┣ 📂Card_edit_form
+ ┃ ┃ ┗ 📜Card_edit_form.tsx
+ ┃ ┣ 📂Editor
+ ┃ ┃ ┗ 📜Editor.tsx
+ ┃ ┣ 📂Footer
+ ┃ ┃ ┗ 📜Footer.tsx
+ ┃ ┣ 📂Header
+ ┃ ┃ ┗ 📜Header.tsx
+ ┃ ┣ 📂ImageFileInput
+ ┃ ┃ ┗ 📜ImageFileInput.tsx
+ ┃ ┣ 📂Login
+ ┃ ┃ ┗ 📜Login.tsx
+ ┃ ┣ 📂Maker
+ ┃ ┃ ┗ 📜Maker.tsx
+ ┃ ┗ 📂Preview
+ ┃ ┃ ┗ 📜Preview.tsx
+ ┣ 📂images
+ ┃ ┣ 📜default_logo.png
+ ┃ ┗ 📜logo.png
+ ┣ 📂service
+ ┃ ┣ 📜firebase.ts
+ ┃ ┣ 📜firebase_auth_service.ts
+ ┃ ┣ 📜firebase_realtime_db.ts
+ ┃ ┗ 📜image_uploader.ts
+ ┣ 📜App.test.tsx
+ ┣ 📜App.tsx
+ ┣ 📜index.css
+ ┣ 📜index.tsx
+ ┣ 📜logo.svg
+ ┣ 📜react-app-env.d.ts
+ ┣ 📜reportWebVitals.ts
+ ┗ 📜setupTests.ts
+```
