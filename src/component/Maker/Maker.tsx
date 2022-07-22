@@ -36,15 +36,15 @@ const Maker: FC<makerProps> = ({
     fireBaseAuthService.logout();
   };
 
-  const goToLogin = (): void => {
-    navigate('/');
-  };
-
   useEffect(() => {
+    const goToLogin = (): void => {
+      navigate('/');
+    };
+
     fireBaseAuthService.onAuthChange((user: User | null) => {
       !user && goToLogin();
     });
-  }, []);
+  }, [fireBaseAuthService, navigate]);
 
   useEffect(() => {
     const stopSync = fireBaseRealTimeDB.syncCards(userId, setCards); // DB -> front 로 data 저장

@@ -14,7 +14,7 @@ const Preview: FC<PreviewProps> = ({ cards }) => {
       <Title>Card Preview</Title>
       <List>
         {cards.map((card) => (
-          <CardComponent card={card} />
+          <CardComponent key={card.id} card={card} />
         ))}
       </List>
     </Container>
