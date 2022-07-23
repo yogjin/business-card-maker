@@ -1,9 +1,9 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/5bc28dce-331c-4034-86f0-f1be0ccbefa2/deploy-status)](https://app.netlify.com/sites/devcarrrd/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4303f114-0622-47c0-9614-a38e75f7002a/deploy-status)](https://app.netlify.com/sites/business-carrrd/deploys)
 # business-card-maker
 
 간단한 개발자 명함을 만들 수 있습니다.
 
-https://devcarrrd.netlify.app/
+https://business-carrrd.netlify.app/
 
 ## 이용 방법
 
